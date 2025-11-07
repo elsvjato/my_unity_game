@@ -1,106 +1,93 @@
 # My Unity Game - 2D Platformer
 
-A story-driven platformer prototype built as part of my university coursework. The project explores moment-to-moment traversal, collectible-driven progression, and an AI-driven ghost enemy that actively hunts the player across tilemap layouts—a feature I personally envisioned and implemented to push the gameplay beyond baseline requirements.
+A story-driven platformer prototype built as part of my university coursework. The project focuses on traversal, collectibles, and a ghost enemy that intelligently pursues the player across tilemap layouts—a gameplay twist I personally conceived and implemented beyond the baseline assignment.
 
+## 📱 About
 
-📱 About
+My Unity Game is a side-scrolling adventure where precision platforming meets reactive enemy behaviour. You guide a pixel-art hero through handcrafted levels, gather coins, and manage health while a spectral pursuer recalculates paths to cut off escape routes. Integrating the AI ghost chaser was my own initiative to showcase applied pathfinding inside a 2D platformer setting.
 
-My Unity Game is a side-scrolling adventure where platforming meets reactive enemy behaviour. You guide a pixel-art hero through handcrafted levels, collect coins, and manage health while a spectral pursuer uses pathfinding to cut off escape routes. Integrating the AI ghost chaser was my own initiative during development, meant to demonstrate applied pathfinding inside a 2D platformer.
+## ✨ Features
 
+### Core Gameplay
+- **Player Movement**: Responsive 2D controller with jump, mid-air attack, ladder climbing, and grappling rope traversal
+- **Collectible Loop**: Coins, score tracking UI, and particle feedback that reward exploration
+- **Health System**: Heart-based UI, temporary invulnerability frames, and damage zones to pace difficulty
+- **Enemy Variety**: Patrolling enemies, slam traps, and a ghost that adapts to the player’s path
+- **Checkpoints & Effects**: Smoke VFX, audio cues, and scripted interactions that punctuate progression
 
-✨ Features
+### AI & Systems
+- **Ghost Hunter AI**: Tilemap-aware chaser powered by an A* pathfinding implementation (`TilemapPathfinding` + `PriorityQueue`) that I added to elevate the project’s challenge and academic scope
+- **Dynamic Path Refresh**: Enemy recalculates optimal routes in real time while respecting walkable zones
+- **Environmental Awareness**: Physics-based triggers, edge detectors, and hazard scripts informing enemy reactions
 
-Core Gameplay
+### World Building
+- **Scenes**: Playable `Game` level and `Main Menu` hub crafted with Unity Tilemap and Cinemachine framing
+- **Art**: Pixel-art sprites, UI elements, and animation clips authored in the Unity Animator
+- **Audio**: Music and SFX routed through a `MusicController` for moment-to-moment transitions
 
-Player Movement: Responsive 2D controller with jump, mid-air attack, ladder climbing, and grappling rope traversal
-Collectible Loop: Coins, score tracking UI, and particle feedback reinforce exploration
-Health System: Heart-based UI, temporary invulnerability frames, and damage zones
-Enemy Variety: Patrolling enemies, slam traps, and a ghost that adapts to the player’s path
-Checkpoints & Effects: Smoke VFX, audio cues, and scripted interactions to pace progression
+## 🛠️ Tech Stack
 
-AI & Systems
+### Engine & Languages
+- **Unity 2022.3.11f1 (LTS)** — Core engine and editor
+- **C#** — Gameplay scripting, AI, and systems
+- **Unity Input System (Legacy axes)** — Keyboard-driven controls
 
-Ghost Hunter AI: Tilemap-aware chaser powered by an A* pathfinding implementation (`TilemapPathfinding` + `PriorityQueue`) that I added to elevate the project’s challenge and academic scope
-Dynamic Path Refresh: Enemy recalculates routes at runtime, respecting walkable zones and player movement
-Environmental Awareness: Physics-based triggers, edge detectors, and hazard scripts drive enemy reactions
+### Packages & Libraries
+- **com.unity.feature.2d** — Tilemap, SpriteShape, 2D animation & physics tooling
+- **com.unity.cinemachine** — Camera framing for 2D scenes
+- **com.unity.textmeshpro** — UI text rendering
+- **Custom Priority Queue** — Lightweight generic priority queue supporting A* pathfinding
 
-World Building
+### Design & Assets
+- **Unity Animator Controllers** — Player, enemy, and environment state machines
+- **Line Renderer + DistanceJoint2D** — Grappling rope mechanic
+- **Audio Clips in `Assets/Resources`** — Music and SFX prepared for runtime loading
 
-Scenes: Playable `Game` level and `Main Menu` hub crafted with Unity Tilemap and Cinemachine framing
-Art: Pixel-art sprites, UI elements, and animation clips authored in the Unity Animator
-Audio: Music and SFX routed through a `MusicController` for in-game transitions
-
-
-🛠️ Tech Stack
-
-Engine & Languages
-
-Unity 2022.3.11f1 (LTS) — Core engine and editor
-C# — Gameplay scripting, AI, and systems
-Unity Input System (Legacy axes) — Keyboard-driven controls
-
-Packages & Libraries
-
-com.unity.feature.2d — Tilemap, SpriteShape, and 2D physics tooling
-com.unity.cinemachine — Camera framing for 2D scenes
-com.unity.textmeshpro — UI text rendering
-Custom Priority Queue — Lightweight generic priority queue supporting A* pathfinding
-
-Design & Assets
-
-Unity Animator Controllers — Player, enemy, and environment animation state machines
-Line Renderer + DistanceJoint2D — Grappling rope mechanic
-Audio Clips — `Assets/Resources` houses music and SFX for runtime loading
-
-
-📋 Prerequisites
+## 📋 Prerequisites
 
 Before opening the project, install:
+- **Unity Hub** with **Unity 2022.3.11f1** (or compatible LTS release)
+- **Git** (optional, for cloning/pulling updates)
+- **Keyboard & Mouse** for the default control scheme
 
-Unity Hub with Unity 2022.3.11f1 (or compatible LTS release)
-Git (optional, for cloning/pulling updates)
-A keyboard & mouse for default control scheme
+## 🚀 Getting Started
 
+### Installation
 
-🚀 Getting Started
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/elsvjato/my_unity_game.git
+   cd my_unity_game
+   ```
 
-Clone the repository
+2. **Open in Unity**
+   - Launch Unity Hub
+   - Click **Open** and select the cloned folder
+   - Allow Unity to import assets (first import may take several minutes)
 
-git clone https://github.com/elsvjato/my_unity_game.git
-cd my_unity_game
+### Play & Test
+- Open `Assets/Scenes/Main Menu.unity` or `Assets/Scenes/Game.unity`
+- Press the **Play** button in the Unity Editor
+- Use `A/D` (or arrow keys) to move, `Space` to jump, `E` to mid-air attack, and left mouse button to fire the grappling rope at `Ceiling`-tagged anchors
 
-Open in Unity
+### Build (Optional)
+- Navigate to **File → Build Settings…**
+- Add the required scenes
+- Target **PC, Mac & Linux Standalone**
+- Press **Build** and select an output folder
 
-Launch Unity Hub
-Click "Open" and select the cloned folder
-Let Unity import assets (first import can take several minutes)
+## 📱 Key Scripts
 
-Play & Test
+- `EnemyBehaviourAI.cs` — Ghost chaser with tilemap-aware A* navigation
+- `TilemapPathfinding.cs` — Pathfinding service caching neighbours and reconstructing optimal routes
+- `hero.cs` — Player controller, attack logic, and damage handling
+- `GrapplingRope.cs` — DistanceJoint2D-driven grapple mechanic with line renderer visuals
+- `GameManager.cs` — Scene-wide state management and audio transitions
+- `ScoreCounter.cs` — UI binding for coin collection
 
-Open `Assets/Scenes/Main Menu.unity` or `Assets/Scenes/Game.unity`
-Hit the Play button in the Unity Editor
-Use A/D (or arrow keys) to move, Space to jump, E to mid-air attack, and Left Mouse Button to fire the grappling rope at `Ceiling`-tagged anchors
+## 🏗️ Project Structure
 
-Build (Optional)
-
-File → Build Settings…
-Add the required scenes
-Target platform: PC, Mac & Linux Standalone
-Press "Build" and choose an output folder
-
-
-📱 Available Scripts
-
-EnemyBehaviourAI.cs — Ghost chaser with tilemap-aware A* navigation
-TilemapPathfinding.cs — Pathfinding service caching neighbors and reconstructing optimal routes
-hero.cs — Player controller, attack logic, and damage handling
-GrapplingRope.cs — DistanceJoint2D-driven grapple mechanic with line renderer visuals
-GameManager.cs — Scene-wide state management and audio transitions
-ScoreCounter.cs — UI binding for coin collection
-
-
-🏗️ Project Structure
-
+```
 my_unity_game/
 ├── Assets/
 │   ├── Animation/           # Animator controllers & clips
@@ -113,45 +100,38 @@ my_unity_game/
 ├── ProjectSettings/         # Unity project and build configuration
 ├── UserSettings/            # Editor layouts (local only, not required)
 └── README.md                # Project documentation (this file)
+```
 
+## 🔐 Academic Context
 
-🔐 Academic Context
+Developed as part of my university coursework to explore intelligent enemy behaviour in 2D platformers. The ghost AI combines tilemap data with runtime pathfinding to deliver a persistent yet fair challenge, highlighting my self-directed addition of advanced enemy logic.
 
-This prototype was developed as part of my university coursework to explore intelligent enemy behaviour in 2D platformers. The ghost AI combines tilemap data with runtime pathfinding to deliver a persistent, but fair, challenge.
+## 💾 Save & Data Handling
 
+Unity persists editor-only settings under `UserSettings/`. Runtime data (score, health) remains session-based; persistent save files are not generated in this prototype.
 
-💾 Save & Data Handling
+## 🌍 Localization & Accessibility
 
-Unity persists editor-only settings under `UserSettings/`. Runtime data (score, health) is session-based; no persistent saves are written in the current prototype.
+- **Language**: English-only UI
+- **Accessibility**: Keyboard input, visual feedback (hearts, particle effects), and audio cues; subtitles/captions are not yet implemented
 
+## 🎨 Visual & Audio Direction
 
-🌍 Localization & Accessibility
+Pixel art sprites paired with smoke VFX and dynamic lighting shape the visual tone, while layered background music and responsive SFX reinforce key gameplay beats.
 
-Language: English-only UI
-Accessibility: Keyboard input and visual feedback (hearts, particle effects). Audio cues support certain events, but subtitles/captions are not yet implemented.
+## 📝 License
 
+Provided for educational purposes linked to my degree work. All art and audio assets remain © their respective creators and are not licensed for commercial reuse.
 
-🎨 Visual & Audio Direction
+## 👤 Author
 
-Visual Style: Pixel art sprites combined with dynamic lighting and smoke VFX
-Audio: Two layered background tracks with SFX for coin collection, bonuses, and environment events
+**elsvjato**
 
+- GitHub: [@elsvjato](https://github.com/elsvjato)
+- University coursework submission (2025)
 
-📝 License
+## 🙏 Acknowledgments
 
-This project is shared for educational purposes related to my degree work. Assets (art, audio) remain © their respective creators and are not licensed for commercial reuse.
-
-
-👤 Author
-
-elsvjato
-
-GitHub: @elsvjato
-University coursework submission (2025)
-
-
-🙏 Acknowledgments
-
-Unity Technologies — Engine & tooling
-Community pixel-art resources leveraged during prototyping
-Fellow students and mentors who provided playtesting feedback
+- Unity Technologies — Engine & tooling
+- Community pixel-art resources used during prototyping
+- Fellow students and mentors who offered playtesting feedback
