@@ -128,7 +128,7 @@ Provided for educational purposes linked to my degree work. All art and audio as
 **elsvjato**
 
 - GitHub: [@elsvjato](https://github.com/elsvjato)
-- University coursework submission (2025)
+- University coursework submission (2024)
 
 ## 🙏 Acknowledgments
 
